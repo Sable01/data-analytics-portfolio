@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: dim_team
+    description: One row per operating team with its reporting name and region.
+    columns:
+      - name: team_key
+        tests: [not_null, unique]
+      - name: team_name
+        tests: [not_null]
+      - name: region
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [EMEA, GLOBAL]
+
+  - name: fct_daily_operations
+    description: Decision-ready daily workload and capacity metrics at team-date grain.
+    columns:
+      - name: work_date
+        tests: [not_null]
+      - name: team_key
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_team')
+                field: team_key
+      - name: team_name
+        tests: [not_null]
+      - name: region
+        tests: [not_null]
+      - name: capacity_status
+        tests:
+          - accepted_values:
+              arguments:
+                values: [pressure, recovery, stable]
+      - name: throughput_per_staffed_hour
+        description: Completed items divided by staffed hours; null when staffed hours are zero.
+      - name: sla_breach_rate
+        description: SLA breaches divided by completed items; null when no items were completed.

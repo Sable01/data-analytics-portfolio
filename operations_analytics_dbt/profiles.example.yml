@@ -1,0 +1,7 @@
+operations_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: operations_analytics.duckdb
+      threads: 4

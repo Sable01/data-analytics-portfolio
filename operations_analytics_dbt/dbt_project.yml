@@ -1,0 +1,24 @@
+name: operations_analytics
+version: 1.0.0
+config-version: 2
+
+profile: operations_analytics
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  operations_analytics:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+
+seeds:
+  operations_analytics:
+    operational_events:
+      +column_types:
+        work_date: date

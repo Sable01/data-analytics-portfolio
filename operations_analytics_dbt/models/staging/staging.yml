@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg_operational_events
+    description: Clean, typed operational workload records at one row per team and work date.
+    columns:
+      - name: work_date
+        tests: [not_null]
+      - name: team_key
+        tests: [not_null]
+      - name: region
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [EMEA, GLOBAL]

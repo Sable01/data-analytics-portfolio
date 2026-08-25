@@ -1,0 +1,7 @@
+week_start,team_key,team_name,incoming_items,completed_items,highest_closing_backlog,avg_throughput_per_staffed_hour,sla_breach_rate,pressure_days
+2026-07-06,T03,Team Cedar,895,887,440,1.41,0.0406,0
+2026-07-06,T01,Team Atlas,762,766,334,1.39,0.0366,0
+2026-07-06,T02,Team Borealis,606,615,249,1.30,0.0309,0
+2026-07-13,T03,Team Cedar,964,984,492,1.57,0.0457,1
+2026-07-13,T01,Team Atlas,797,791,349,1.45,0.0442,0
+2026-07-13,T02,Team Borealis,637,636,261,1.37,0.0393,0
