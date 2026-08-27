@@ -20,7 +20,10 @@ tested once rather than recreated in every dashboard?
   decision-facing team attributes and SLA-rate boundary checks;
 - backlog continuity validation between consecutive team observations;
 - a decision-focused weekly review query;
+- a documented dbt exposure linking the tested fact model to its downstream
+  weekly management review;
 - a short management brief translating the generated query output into actions.
+
 
 ## Model flow
 
@@ -52,6 +55,8 @@ analysis feeds a concise operational recommendation.
    `tests/assert_backlog_continuity.sql` for the quality rules.
 6. Read `analyses/weekly_capacity_review.sql`, then compare its output with
    `results/WEEKLY_CAPACITY_BRIEF.md` to see how the model supports a decision.
+7. Read `models/exposures.yml` to see how the downstream review is represented in
+   dbt lineage.
 
 ## Result
 
@@ -78,8 +83,8 @@ dbt build
 dbt compile
 ```
 
-The current clean build completes all 23 nodes successfully, including 19 data
-tests, with no warnings or errors.
+The current clean build completes 24 resources successfully, including 19 data
+tests and one documented exposure, with no warnings or errors.
 
 The SQL is intentionally portable. A production version could point the same dbt
 models at Snowflake or Databricks by changing the adapter and profile, then
