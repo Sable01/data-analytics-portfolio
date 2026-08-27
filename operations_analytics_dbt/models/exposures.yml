@@ -13,4 +13,4 @@ exposures:
       - ref('fct_daily_operations')
     owner:
       name: Oleksandr Soboliev
-      email: Sable01@users.noreply.github.com
+      email: 192936429+Sable01@users.noreply.github.com
