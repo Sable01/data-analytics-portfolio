@@ -1,0 +1,16 @@
+version: 2
+
+exposures:
+  - name: weekly_capacity_review
+    label: Weekly Capacity Review
+    type: analysis
+    maturity: medium
+    description: >
+      A weekly management review of workload, completions, backlog, throughput,
+      SLA risk and pressure days. It supports investigation and capacity-planning
+      decisions using the tested daily operations fact model.
+    depends_on:
+      - ref('fct_daily_operations')
+    owner:
+      name: Oleksandr Soboliev
+      email: soboliev@yahoo.com
