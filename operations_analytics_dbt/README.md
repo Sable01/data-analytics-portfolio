@@ -22,6 +22,7 @@ tested once rather than recreated in every dashboard?
 - a decision-focused weekly review query;
 - a documented dbt exposure linking the tested fact model to its downstream
   weekly management review;
+- a focused unit test proving the closing-backlog calculation on known inputs;
 - a short management brief translating the generated query output into actions.
 
 
@@ -53,9 +54,11 @@ analysis feeds a concise operational recommendation.
 5. Read `models/marts/marts.yml`, `tests/assert_valid_operational_balance.sql`,
    `tests/assert_valid_sla_breach_rate.sql` and
    `tests/assert_backlog_continuity.sql` for the quality rules.
-6. Read `analyses/weekly_capacity_review.sql`, then compare its output with
+6. Read `models/marts/unit_tests.yml` for a small, fixed-input check of the core
+   closing-backlog calculation.
+7. Read `analyses/weekly_capacity_review.sql`, then compare its output with
    `results/WEEKLY_CAPACITY_BRIEF.md` to see how the model supports a decision.
-7. Read `models/exposures.yml` to see how the downstream review is represented in
+8. Read `models/exposures.yml` to see how the downstream review is represented in
    dbt lineage.
 
 ## Result
@@ -83,8 +86,9 @@ dbt build
 dbt compile
 ```
 
-The current clean build completes 24 resources successfully, including 19 data
-tests and one documented exposure, with no warnings or errors.
+The current clean build completes 25 resources successfully, including 19 data
+tests, one focused unit test and one documented exposure, with no warnings or
+errors.
 
 The SQL is intentionally portable. A production version could point the same dbt
 models at Snowflake or Databricks by changing the adapter and profile, then
