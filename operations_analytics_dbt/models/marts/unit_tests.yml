@@ -1,0 +1,28 @@
+version: 2
+
+unit_tests:
+  - name: closing_backlog_is_calculated_from_daily_flow
+    description: >
+      Confirms that closing backlog equals starting backlog plus incoming work
+      minus completed work for a known team-day example.
+    model: fct_daily_operations
+    given:
+      - input: ref('stg_operational_events')
+        rows:
+          - work_date: 2026-01-05
+            team_key: atlas
+            starting_backlog: 40
+            incoming_items: 35
+            completed_items: 50
+            staffed_hours: 10
+            sla_breaches: 2
+            source_updated_at: 2026-01-06 08:00:00
+      - input: ref('dim_team')
+        rows:
+          - team_key: atlas
+            team_name: Team Atlas
+            region: EMEA
+    expect:
+      rows:
+        - team_key: atlas
+          ending_backlog: 25
